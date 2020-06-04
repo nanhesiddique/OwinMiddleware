@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbSatyamSirModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_customer">
+          <Key>
+            <PropertyRef Name="cust_id" />
+          </Key>
+          <Property Name="cust_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cust_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="cust_age" Type="int" />
+          <Property Name="cust_email" Type="nvarchar" MaxLength="100" />
+          <Property Name="cust_address" Type="nvarchar" MaxLength="500" />
+          <Property Name="cust_pincode" Type="nvarchar" MaxLength="10" />
+          <Property Name="cust_contact" Type="nvarchar" MaxLength="20" />
+          <Property Name="createdby" Type="int" />
+          <Property Name="createddate" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="tbl_user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pass_word" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="dbSatyamSirModelStoreContainer">
+          <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_user" EntityType="Self.tbl_user" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbSatyamSirModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_customer">
+          <Key>
+            <PropertyRef Name="cust_id" />
+          </Key>
+          <Property Name="cust_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cust_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="cust_age" Type="Int32" />
+          <Property Name="cust_email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="cust_address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="cust_pincode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="cust_contact" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="createdby" Type="Int32" />
+          <Property Name="createddate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="dbSatyamSirEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" />
+          <EntitySet Name="tbl_user" EntityType="dbSatyamSirModel.tbl_user" />
+        </EntityContainer>
+        <EntityType Name="tbl_user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pass_word" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbSatyamSirModelStoreContainer" CdmEntityContainer="dbSatyamSirEntities">
+          <EntitySetMapping Name="tbl_customer">
+            <EntityTypeMapping TypeName="dbSatyamSirModel.tbl_customer">
+              <MappingFragment StoreEntitySet="tbl_customer">
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="cust_name" ColumnName="cust_name" />
+                <ScalarProperty Name="cust_age" ColumnName="cust_age" />
+                <ScalarProperty Name="cust_email" ColumnName="cust_email" />
+                <ScalarProperty Name="cust_address" ColumnName="cust_address" />
+                <ScalarProperty Name="cust_pincode" ColumnName="cust_pincode" />
+                <ScalarProperty Name="cust_contact" ColumnName="cust_contact" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_user">
+            <EntityTypeMapping TypeName="dbSatyamSirModel.tbl_user">
+              <MappingFragment StoreEntitySet="tbl_user">
+                <ScalarProperty Name="Pass_word" ColumnName="Pass_word" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

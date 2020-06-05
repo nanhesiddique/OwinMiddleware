@@ -47,6 +47,9 @@
             @Html.AntiForgeryToken()
             <div class="insidebox">
                 <div><h1>Log In</h1></div>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class="text-danger" })
+
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon">
@@ -68,17 +71,20 @@
 
                 </div>
                 <div class="row">
-<div class="col-xs-8">
-    <div class="checkbox">
-        <label>
-            <input type="checkbox" />Remember Me
-        </label>
-    </div>
-</div>
+                    <div class="col-xs-8">
+                        <div class="checkbox Icheck">
+                            <label>
+                                <input type="checkbox" />Remember Me
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group" style="text-align:right;">
+                            <input type="submit" value="Login" class="btn btn-success" />
+                        </div>
+                    </div>
                 </div>              
-                <div class="form-group">
-                    <input type="submit" value="Login" class="btn btn-success" />
-                </div>
+                
                 <div class="form-group">
                     <p style="color:red">@ViewBag.error</p>
 
@@ -93,6 +99,14 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $(function ())
+    {
+        $('input').Icheck
+    }
+</script>
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

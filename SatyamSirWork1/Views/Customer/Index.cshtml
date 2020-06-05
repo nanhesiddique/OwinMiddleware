@@ -1,0 +1,61 @@
+﻿@model SatyamSirWork1.Models.tbl_customer
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+
+
+
+@using (Html.BeginForm("Index", "Customer"))
+{
+    <h2>Add Customer</h2>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-8 col-md-8">
+                <label for="cutomername">Customer Name</label>
+                @Html.TextBoxFor(x => x.cust_name, new { @class = "form-control", @placeholder = "Customer Name" })
+                <span style="color:red;font-weight:bold;">@Html.ValidationMessageFor(x => x.cust_name)</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(x => x.cust_age, new { @class = "form-control", @placeholder = "Age" })
+        <span style="color:red;font-weight:bold;">@Html.ValidationMessageFor(x => x.cust_age)</span>
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(x => x.cust_contact, new { @class = "form-control", @placeholder = "Contact" })
+        <span style="color:red;font-weight:bold;">@Html.ValidationMessageFor(x => x.cust_contact)</span>
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(x => x.cust_email, new { @class = "form-control", @placeholder = "EmailId" })
+        <span style="color:red;font-weight:bold;">@Html.ValidationMessageFor(x => x.cust_email)</span>
+    </div>
+    <div class="form-group">
+        @Html.TextAreaFor(x => x.cust_address, new { @class = "form-control", @placeholder = "Address" })
+        <span style="color:red;font-weight:bold;">@Html.ValidationMessageFor(x => x.cust_address)</span>
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(x => x.cust_pincode, new { @class = "form-control", @placeholder = "PinCode" })
+        <span style="color:red;font-weight:bold;">@Html.ValidationMessageFor(x => x.cust_pincode)</span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-success" />
+    </div>
+    <div class="form-group">
+        <p style="color:red">@ViewBag.error</p>
+    </div>
+
+}
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+
+
+
+

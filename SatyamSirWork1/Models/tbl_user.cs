@@ -11,11 +11,16 @@ namespace SatyamSirWork1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tbl_user
     {
         public int id { get; set; }
+        [Required]
+        [Display(Name ="UserName")]
         public string UserName { get; set; }
+        [Required]
+        [Display(Name = "Password")]
         public string Pass_word { get; set; }
     }
 }

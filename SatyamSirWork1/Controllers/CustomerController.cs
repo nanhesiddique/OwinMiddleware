@@ -20,29 +20,37 @@ namespace SatyamSirWork1.Controllers
         }
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(tbl_customer cus)
         {
-            tbl_customer cc = new tbl_customer();
-            cc.cust_name = cus.cust_name;
-            cc.cust_email = cus.cust_email;
-            cc.cust_age = cus.cust_age;
-            cc.cust_contact = cus.cust_contact;
-            cc.cust_address = cus.cust_address;
-            cc.cust_pincode = cus.cust_pincode;
-            db.tbl_customer.Add(cc);
-            db.SaveChanges();
-            return View("CustomerList");
+            if (ModelState.IsValid)
+            {
+                tbl_customer cc = new tbl_customer();
+                cc.cust_name = cus.cust_name;
+                cc.cust_email = cus.cust_email;
+                cc.cust_age = cus.cust_age;
+                cc.cust_contact = cus.cust_contact;
+                cc.cust_address = cus.cust_address;
+                cc.cust_pincode = cus.cust_pincode;
+                db.tbl_customer.Add(cc);
+                db.SaveChanges();
+                return View("CustomerList");
+            }
+            return View(cus);
         }
+
         public ActionResult CustomerList()
         {
             return View();
         }
-        public ActionResult GetCustomerList()
-        {
+        //public ActionResult GetCustomerList()
+        //{
 
-                var custlist = db.tbl_customer.ToList<tbl_customer>();
-                return Json(new { data = custlist }, JsonRequestBehavior.AllowGet);
-            
-        }
+        //    var custlist = db.tbl_customer.ToList<tbl_customer>();
+        //    return Json(new { data = custlist }, JsonRequestBehavior.AllowGet);
+
+
+
+        //}
     }
 }

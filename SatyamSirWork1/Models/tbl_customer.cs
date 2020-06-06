@@ -16,12 +16,24 @@ namespace SatyamSirWork1.Models
     public partial class tbl_customer
     {
         public int cust_id { get; set; }
-        [Required]
+        
+        [Display(Name = "Customer Name")]
+        [StringLength(50, ErrorMessage = "Minimum length 50")]
         public string cust_name { get; set; }
+        
+        [Display(Name = "Customer Age")]
         public Nullable<int> cust_age { get; set; }
+        
+        [Display(Name = "Customer Email")]
         public string cust_email { get; set; }
+        
+        [Display(Name = "Customer Address")]
         public string cust_address { get; set; }
+        
+        [Display(Name = "Customer Pincode")]
         public string cust_pincode { get; set; }
+        
+        [Display(Name = "Customer Contact")]
         public string cust_contact { get; set; }
         public Nullable<int> createdby { get; set; }
         public Nullable<System.DateTime> createddate { get; set; }

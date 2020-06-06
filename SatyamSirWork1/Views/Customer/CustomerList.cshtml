@@ -3,60 +3,51 @@
     ViewBag.Title = "CustomerList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Customer List</h2>
-<table id="Customertable">
+
+<h2>CustomerList</h2>
+<table id="tblCustomer" border="1" class="table table-bordered table-responsive">
     <thead>
         <tr>
-            <td>Cutomer Name</td>
-            <td>Cutomer Age</td>
-            <td>Cutomer Email</td>
-            <td>Cutomer Address</td>
-            <td>Cutomer Pincode</td>
-            <td>Cutomer Phone</td>
+            <th>Id</th>
+            <th>Customer Name</th>
+            <th>Customer Age</th>
+            <th>Customer Email</th>
+            <th>Customer Address</th>
+            <th>Customer PhoneNo</th>
+            <th>Customer Pincode</th>
         </tr>
     </thead>
+    <tbody></tbody>
 </table>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <link href="~/Content/DataTable.min.css" rel="stylesheet" />
-    @section scripts
-
-    {
-        <script src="~/Scripts/DataTable.min.js"></script>
-    }
+<script src="@Url.Content("~/Scripts/jquery-3.3.1.min.js")" )></script>
 <script>
     $(document).ready(function () {
-        $('#Customertable').DataTable({
-            "ajax": {
-                "url": "/Customer/GetCustomerList",
-                "type": "GET",
-                "datatype": "json"
-            },
-            "columns": [
-                {
-                    "data": "cust_name"
-                },
-                {
-                    "data": "cust_age"
-                },
-                {
-                    "data": "cust_email"
-                },
-                {
-                    "data": "cust_address"
-                },
-                {
-                    "data": "cust_pincode"
-                },
-                {
-                    "data": "cust_contact"
-                },
-
-            ]
-
-
-
-
+        var currentPageNumber = 1;
+        loadData(currentPageNumber);
+        $(window).scroll(function () {
+            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+                currentPageNumber += 1;
+                loadData(currentPageNumber);
+            }
         });
+        function loadData(currentPage) {
+            $.ajax({
+                url: '../MyService/CustomerServices.asmx/GetCustomer',
+                method: 'post',
+                data: { pageNumber: currentPage, pageSize: 20 },
+                dataType: 'json',
+                success: function (data) {
+                    var custTable = $('#tblCustomer tbody');
+                    $(data).each(function (index, ccus) {
+                        custTable.append('<tr><td>' + ccus.cust_id + '</td><td>' + ccus.cust_name + '</td><td>' + ccus.cust_age + '</td><td>' +
+                            ccus.cust_email + '</td><td>' + ccus.cust_address + '</td><td>' + ccus.cust_contact +
+                            '</td><td>' + ccus.cust_pincode + '</td></tr>');
+                    })
+                }
+                
+
+            });
+        }
     });
 </script>
 
